@@ -1,28 +1,81 @@
-# Evoltis - Prueba TÈcnica Backend (.NET)
+# Evoltis Technical Test - Backend SSR
 
-Tiene como objetivo evaluar tus conocimientos tÈcnicos en el desarrollo de APIs RESTful utilizando .NET 6 y buenas pr·cticas de arquitectura y testing.
+Este proyecto es una API RESTful desarrollada en ASP.NET Core 6.0 como parte de un desaf√≠o t√©cnico. La soluci√≥n implementa un CRUD para productos, Swagger para documentaci√≥n interactiva, autenticaci√≥n por `X-API-KEY` y acceso a base de datos MySQL usando Entity Framework Core con Fluent API.
 
-## TecnologÌas utilizadas
+---
 
-- .NET 6
-- Entity Framework Core (incluye Code First)
+## Tecnolog√≠as utilizadas
+
+- ASP.NET Core 6.0
+- Entity Framework Core
+- MySQL / MariaDB
+- Swashbuckle (Swagger)
 - AutoMapper
-- xUnit (para testing)
-- MySql como base de datos.
-- Swagger (para documentaciÛn de endpoints).
+- xUnit (para tests)
+- Fluent API
+- Inyecci√≥n de dependencias (DI)
+- C#
 
-## Estructura del Proyecto
+---
 
-El proyecto est· basado en una arquitectura **monolÌtica por capas**. Las carpetas principales son:
+## Requisitos
 
-- `Controllers`: Controladores con los endpoints de la API.
-- `Domain`: ConfiguraciÛn del `DbContext` y archivos de configuraciÛn EF Core.
-- `Models`: Modelos de dominio (Code First).
-- `Repositories`: ImplementaciÛn del patrÛn repositorio.
-- `Services`: Contiene la lÛgica de negocio.
-- `MappingServices`: ConfiguraciÛn de AutoMapper.
-- `UnitTests`: Pruebas unitarias separadas por repositorio y servicios.
-- `Program.cs` y `appsettings.json`: Archivos base para levantar la app.
+- .NET 6 SDK
+- MySQL o MariaDB
+- Visual Studio 2022 o superior (recomendado)
+- Postman o herramienta similar para pruebas manuales
 
-## Consideraciones.
-- Verificar la configuracion de program.cs para levantar el proyecto.
+---
+
+## Configuraci√≥n inicial
+
+1. Clon√° el proyecto:
+```bash
+   git clone https://github.com/usuario/technical-tests-backend-ssr.git
+   cd technical-tests-backend-ssr
+```
+
+2. Configur√° tu cadena de conexi√≥n en appsettings.json:
+
+   
+```bash
+  
+"ConnectionStrings": {
+  "DefaultConnection": "server=localhost;port=3306;database=productdb;user=dotnet_user;password=tu_contrase√±a;"
+}
+```
+
+3. Restaura paquetes de nuget con 
+```bash
+dotnet restore
+```
+
+4. Cre√° y aplic√° migraciones
+
+```bash
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+
+## Swagger UI
+Swagger se encuentra disponible en:
+
+```bash
+http://localhost:port/swagger
+
+```
+
+## x-Api-Key
+Para acceder a los endpoints protegidos, deb√©s incluir una cabecera x-api-key con tu clave.
+
+```bash
+f4a5e439-47c8-4566-ba52-fa550a9cd748
+
+```
+
+Autor
+Juan Pablo Garcia
+Evoltis - Technical Test
+
