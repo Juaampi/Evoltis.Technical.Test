@@ -31,7 +31,7 @@ Este proyecto es una API RESTful desarrollada en ASP.NET Core 6.0 como parte de 
 
 1. Cloná el proyecto:
 ```bash
-   git clone https://github.com/usuario/technical-tests-backend-ssr.git
+   git clone https://github.com/Juaampi/Evoltis.Technical.Test.git
    cd technical-tests-backend-ssr
 ```
 
