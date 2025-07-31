@@ -8,7 +8,7 @@ namespace technical_tests_backend_ssr.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("productdb");
+            builder.ToTable("products");
 
             builder.HasKey(p => p.Id);
 

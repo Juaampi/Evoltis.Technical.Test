@@ -7,8 +7,6 @@ using technical_tests_backend_ssr.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -50,8 +48,6 @@ builder.Services.AddAutoMapper(typeof(ProductMappingProfile));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
-
-//configurar Entity Framework Core con MySQL
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<EvoltisTestDbContext>(opt => 
     opt.UseMySql(connectionString,
@@ -59,8 +55,15 @@ builder.Services.AddDbContext<EvoltisTestDbContext>(opt =>
     )
 );
 
-//configurar automapper
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();  
+    });
+});
 
 
 var app = builder.Build();
@@ -74,13 +77,9 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; // Swagger en raíz
     });
 }
-
+app.UseCors("AllowAngularApp");
 app.UseMiddleware<ApiKeyMiddleware>();
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
